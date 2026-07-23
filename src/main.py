@@ -3,29 +3,11 @@ import math
 import pygame
 
 from engine.framebuffer import Framebuffer
-from engine.vector import Vec3
 from engine.renderer import Renderer
+from engine.mesh import create_cube
 
 WIDTH = 800
 HEIGHT = 600
-
-def create_cube():
-    return [
-        Vec3(-1, -1, -1),
-        Vec3( 1, -1, -1),
-        Vec3( 1,  1, -1),
-        Vec3(-1,  1, -1),
-        Vec3(-1, -1,  1),
-        Vec3( 1, -1,  1),
-        Vec3( 1,  1,  1),
-        Vec3(-1,  1,  1),
-    ]
-
-EDGES = [
-    (0,1),(1,2),(2,3),(3,0),
-    (4,5),(5,6),(6,7),(7,4),
-    (0,4),(1,5),(2,6),(3,7)
-]
 
 pygame.init()
 
@@ -54,10 +36,9 @@ while running:
 
     framebuffer.clear((20, 20, 30))
 
-    renderer.draw_wire_cube(
+    renderer.render_mesh(
         framebuffer,
         cube,
-        EDGES,
         angle
     )
 
